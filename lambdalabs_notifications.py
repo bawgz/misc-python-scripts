@@ -17,7 +17,7 @@ while True:
   print(response_json)
   print("____________________________________________________________________")
 
-  filtered_dict = {k:v for (k,v) in response_json.items() if len(v['regions_with_capacity_available']) > 0}
+  filtered_dict = {k:v for (k,v) in response_json.items() if v['instance_type']['price_cents_per_hour'] < 200 and len(v['regions_with_capacity_available']) > 0}
 
   print(filtered_dict)
 
@@ -30,4 +30,4 @@ while True:
     webhook.send(embeds=embeds)
     time.sleep(300)
 
-  time.sleep(60)
+  time.sleep(30)

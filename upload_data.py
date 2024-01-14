@@ -4,7 +4,7 @@ import os
 def upload_file_and_get_serving_url(api_token, file_path):
     # Initial POST request
     response = requests.post(
-        "https://dreambooth-api-experimental.replicate.com/v1/upload/data.zip",
+        f"https://dreambooth-api-experimental.replicate.com/v1/upload/{file_path}",
         headers={"Authorization": f"Token {api_token}"}
     )
 
@@ -21,7 +21,8 @@ def upload_file_and_get_serving_url(api_token, file_path):
 
     # Uploading the file
     with open(file_path, 'rb') as file:
-        upload_response = requests.put(upload_url, data=file, headers={"Content-Type": "application/zip"})
+        content_type = "application/zip" if file_path.endswith(".zip") else "application/x-tar"
+        upload_response = requests.put(upload_url, data=file, headers={"Content-Type": content_type})
 
     if upload_response.status_code != 200:
         raise Exception(f"Failed to upload file: {upload_response.text}")
@@ -30,7 +31,7 @@ def upload_file_and_get_serving_url(api_token, file_path):
 
 # Replace 'your_api_token_here' with your actual API token and 'path_to_your_data.zip' with the path to your data.zip file
 api_token = os.getenv('REPLICATE_API_TOKEN')
-file_path = 'data.zip'
+file_path = '1024_MAN.zip'
 
 try:
     serving_url = upload_file_and_get_serving_url(api_token, file_path)

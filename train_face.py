@@ -1,11 +1,16 @@
 import replicate
 
 training = replicate.trainings.create(
-    version="bawgz/stable-dripfusion:cb7dc3fb600351875eb7ed4d2a4dc9842236aa2d19317cf33adaf954f0112f4e",
+    version="bawgz/dripfusion-base:30f6d904d186c357901faf3429fecac93af142c449fbafe8bc5c2249ced608c0",
     input={
-        "input_images": "https://replicate.delivery/pbxt/K5IafGgyGLIhAn3yqMSZe3H26Mrp44prmxorUpVhQnN7efQh/data.zip",
-        "token_string": "LUK",
+        "input_images": "https://replicate.delivery/pbxt/KAFzTB7svN2l7vJaiwbfL7rVzjSiijDGpCHDKhp8qBKSQjVR/me2.zip",
+        "caption_prefix": 'A photo of TOK man, ',
         "use_face_detection_instead": True,
+        "train_batch_size": 1,
+        "max_train_steps": 4000,
+        "lora_lr": 1e-4,
     },
-    destination="bawgz/stable-dripfusion"
+    destination="bawgz/dripfusion-trained"
 )
+
+# https://replicate.delivery/pbxt/KAFzTB7svN2l7vJaiwbfL7rVzjSiijDGpCHDKhp8qBKSQjVR/me2.zip
