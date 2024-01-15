@@ -8,14 +8,14 @@ pipe.load_lora_weights("CiroN2022/toy-face", weight_name="toy_face_sdxl.safetens
 
 pipe.fuse_lora(lora_scale=1.0)
 
-prompt = "toy_face of a hacker with a hoodie, pixel art"
+prompt = "toy_face of a hacker with a hoodie"
 image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
 
 image.save("output.png")
 
 pipe.save_pretrained("../pretrained")
 
-pipe2 = DiffusionPipeline.from_pretrained("../pretrained", torch_dtype=torch.float16).to("cuda")
-image = pipe2(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
+pipe = DiffusionPipeline.from_pretrained("../pretrained", torch_dtype=torch.float16, low_cpu_mem_usage=False, device_map=None).to("cuda")
+image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
 
 image.save("output2.png")
