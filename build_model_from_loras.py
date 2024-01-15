@@ -16,4 +16,12 @@ model.set_adapters("SUN", [1.0])
 
 model.fuse_lora()
 
+pipe = model.to("cuda")
+
+print("loaded model")
+
+images = pipe("A photo of a man wearing pit viper sunglasses").images
+# your output image
+images[0]
+
 model.push_to_hub(repo_id="bawgz/dripfusion-base", token=True, private=True, variant="fp16", safe_serialization=True)
