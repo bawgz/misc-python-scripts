@@ -7,6 +7,7 @@ def main():
         torch_dtype=torch.float16,
         use_safetensors=True,
         variant="fp16",
+        token=True,
     ).to("cuda")
 
     print("loaded model")

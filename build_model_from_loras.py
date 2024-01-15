@@ -16,4 +16,4 @@ model.set_adapters("SUN", [1.0])
 
 model.fuse_lora()
 
-model.push_to_hub("bawgz/dripfusion-base", token=True, private=True, variant="fp16")
+model.push_to_hub(repo_id="bawgz/dripfusion-base", token=True, private=True, variant="fp16", safe_serialization=True)
