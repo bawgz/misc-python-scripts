@@ -9,6 +9,8 @@ def main():
         variant="fp16",
     ).to("cuda")
 
+    print("loaded model")
+
     images = pipe("A photo of a man wearing pit viper sunglasses").images
     # your output image
     images[0]
