@@ -26,3 +26,6 @@ print(images[0])
 images[0].save("output.png")
 
 model.push_to_hub(repo_id="bawgz/dripfusion-base", token=True, private=True, variant="fp16", safe_serialization=True)
+
+
+model.save_pretrained("../pretrained", variant="fp16", safe_serialization=True)
