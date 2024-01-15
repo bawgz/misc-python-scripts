@@ -17,3 +17,5 @@ if __name__ == "__main__":
     repo_id = sys.argv[3]
     repo_type = sys.argv[4]
     main(path_to_file, path_in_repo, repo_id, repo_type)
+
+# python save_lora_file_in_hf.py "/workspace/dripglasses-pit_viper_sunglasses/model/pit_viper_sunglasses.safetensors" "pit_viper_sunglasses.safetensors" "bawgz/dripglasses_lora" "model"

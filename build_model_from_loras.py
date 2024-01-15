@@ -10,7 +10,7 @@ model = DiffusionPipeline.from_pretrained(
 
 # TODO: fuse a LoRA model into this model
 
-model.load_lora_weights("bawgz/dripglasses_lora", weight_name="pit_viper_sunglasses-000008.safetensors", adapter_name="SUN")
+model.load_lora_weights("bawgz/dripglasses_lora", weight_name="pit_viper_sunglasses.safetensors", adapter_name="SUN")
 
 model.set_adapters("SUN", [1.0])
 
