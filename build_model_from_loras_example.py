@@ -18,4 +18,6 @@ pipe.save_pretrained("../pretrained", variant="fp16", safe_serialization=True)
 pipe = DiffusionPipeline.from_pretrained("../pretrained", torch_dtype=torch.float16, variant="fp16", low_cpu_mem_usage=False).to("cuda")
 image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
 
+print("?????????????????")
+
 image.save("output2.png")
