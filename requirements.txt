@@ -2,3 +2,4 @@ huggingface_hub
 diffusers
 torch
 transformers
+accelerate
