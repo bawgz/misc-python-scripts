@@ -14,10 +14,10 @@ pipe.fuse_lora()
 
 print("pipe fused")
 
-prompt = "toy_face of a hacker with a hoodie"
-image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
+# prompt = "toy_face of a hacker with a hoodie"
+# image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
 
-image.save("output.png")
+# image.save("output.png")
 
 pipe.save_pretrained("../pretrained")
 
