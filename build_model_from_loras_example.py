@@ -14,6 +14,10 @@ image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).ima
 
 image.save("output.png")
 
+unet_keys_at_save = pipe.unet.state_dict().keys()
+
+print("unet keys at save", unet_keys_at_save)
+
 pipe.save_pretrained("../pretrained")
 
 pipe = DiffusionPipeline.from_pretrained("../pretrained").to("cuda")
