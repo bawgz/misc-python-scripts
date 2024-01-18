@@ -14,8 +14,6 @@ print(pipe.unet)
 
 state_dict_before_fuse = pipe.unet.state_dict().copy()
 
-print("state dict before fuse", state_dict_before_fuse)
-
 pipe.fuse_lora()
 
 print("pipe fused")
@@ -23,9 +21,20 @@ print(pipe.unet)
 
 state_dict_after_fuse = pipe.unet.state_dict().copy()
 
-print("state dict after fuse", state_dict_before_fuse)
+def dict_compare(d1, d2):
+    d1_keys = set(d1.keys())
+    d2_keys = set(d2.keys())
+    shared_keys = d1_keys.intersection(d2_keys)
+    added = d1_keys - d2_keys
+    removed = d2_keys - d1_keys
+    modified = {o : (d1[o], d2[o]) for o in shared_keys if d1[o] != d2[o]}
+    return added, removed, modified
 
-print("state dict before fuse == state dict after fuse", state_dict_before_fuse == state_dict_after_fuse)
+added, removed, modified = dict_compare(state_dict_before_fuse, state_dict_after_fuse)
+
+print("added:", added)
+print("removed:", removed)
+print("modified:", modified)
 
 prompt = "toy_face of a hacker with a hoodie"
 image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
