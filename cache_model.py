@@ -27,7 +27,7 @@ def dict_compare(d1, d2):
     shared_keys = d1_keys.intersection(d2_keys)
     added = d1_keys - d2_keys
     removed = d2_keys - d1_keys
-    modified = {o : (d1[o], d2[o]) for o in shared_keys if d1[o] != d2[o]}
+    modified = {o : (d1[o], d2[o]) for o in shared_keys if not torch.eq(d1[o], d2[o])}
     return added, removed, modified
 
 added, removed, modified = dict_compare(state_dict_before_fuse, state_dict_after_fuse)
