@@ -23,6 +23,11 @@ image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).ima
 
 image.save("output.png")
 
+pipe.unfuse_lora()
+image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
+
+image.save("output2.png")
+
 pipe.save_pretrained("../pretrained")
 
 print("pipe saved")
