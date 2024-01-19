@@ -1,8 +1,13 @@
 import torch
-from diffusers import DiffusionPipeline
+from diffusers import DiffusionPipeline, AutoencoderKL
+
+better_vae = AutoencoderKL.from_pretrained(
+    "madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16
+)
 
 model = DiffusionPipeline.from_pretrained(
     "SG161222/RealVisXL_V3.0",
+    vae=better_vae,
     torch_dtype=torch.float16,
     use_safetensors=True,
     variant="fp16",
