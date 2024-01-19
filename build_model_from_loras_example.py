@@ -17,12 +17,12 @@ image.save("output.png")
 
 pipe.save_pretrained("../pretrained")
 
-pipe = DiffusionPipeline.from_pretrained("../pretrained").to("cuda")
-image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
+pipe2 = DiffusionPipeline.from_pretrained("../pretrained").to("cuda")
+image = pipe2(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
 
 image.save("output2.png")
 
-pipe.unfuse_lora()
-image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
+pipe2.unfuse_lora()
+image = pipe2(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
 
 image.save("output3.png")
