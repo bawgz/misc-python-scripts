@@ -12,10 +12,10 @@ pipe.load_lora_weights("CiroN2022/toy-face", weight_name="toy_face_sdxl.safetens
 print("pipe LoRA loaded")
 # print(pipe.unet)
 
-pipe.fuse_lora()
+# pipe.fuse_lora()
 
-print("pipe fused")
-# print(pipe.unet)
+# print("pipe fused")
+# # print(pipe.unet)
 
 
 prompt = "toy_face of a hacker with a hoodie"
@@ -23,10 +23,6 @@ image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).ima
 
 image.save("output.png")
 
-pipe.unfuse_lora()
-image = pipe(prompt, num_inference_steps=30, generator=torch.manual_seed(0)).images[0]
-
-image.save("output2.png")
 
 pipe.save_pretrained("../pretrained")
 
