@@ -14,7 +14,7 @@ model = DiffusionPipeline.from_pretrained(
 )
 
 model.load_lora_weights("bawgz/dripglasses_lora", weight_name="pit_viper_sunglasses.safetensors", adapter_name="SUN")
-model.fuse_lora()
+model.fuse_lora(lora_scale=0.7)
 model.unload_lora_weights()
 
 model.push_to_hub(repo_id="bawgz/dripfusion-base", variant="fp16")
