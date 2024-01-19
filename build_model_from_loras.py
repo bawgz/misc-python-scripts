@@ -8,30 +8,14 @@ model = DiffusionPipeline.from_pretrained(
     variant="fp16",
 )
 
-# TODO: fuse a LoRA model into this model
-
 model.load_lora_weights("bawgz/dripglasses_lora", weight_name="pit_viper_sunglasses.safetensors", adapter_name="SUN")
-
-model.set_adapters("SUN", [1.0])
-
 model.fuse_lora()
+model.unload_lora_weights()
 
-# pipe = model.to("cuda")
-
-# print("loaded model")
-
-# images = pipe("A photo of a man wearing pit viper sunglasses").images
-# # your output image
-# print(images[0])
-# images[0].save("output.png")
-
-# model.push_to_hub(repo_id="bawgz/dripfusion-base", token=True, private=True, variant="fp16", safe_serialization=True)
-
-
-model.save_pretrained("../pretrained", variant="fp16", safe_serialization=True)
+model.push_to_hub(repo_id="bawgz/dripfusion-base", variant="fp16")
 
 pipe = DiffusionPipeline.from_pretrained(
-  "../pretrained",
+  "bawgz/dripfusion-base",
   torch_dtype=torch.float16,
   use_safetensors=True,
   variant="fp16"
